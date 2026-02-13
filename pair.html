@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>༒❀༒𝔾𝔸𝔾𝔸09-𝕄𝔻-𝕍1༒❀༒</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* 3D Perspective Root */
+    :root {
+      --primary: #00f5d4;
+      --primary-dark: #00b39b;
+      --secondary: #12121d;
+      --background: #0a0a12;
+      --card-bg: rgba(25, 25, 36, 0.85);
+      --text: #f8f8ff;
+      --text-muted: #b8b8d1;
+      --input-bg: rgba(255, 255, 255, 0.05);
+      --input-text: #ffffff;
+      --success: #6ee7b7;
+      --error: #fca5a5;
+      --warning: #fcd34d;
+      --border-color: rgba(0, 245, 212, 0.3);
+      --glass-blur: 20px;
+      --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    [data-theme="light"] {
+      --primary: #00b39b;
+      --primary-dark: #00897b;
+      --secondary: #f9fafb;
+      --background: #eef2f3;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --text: #1f2937;
+      --text-muted: #6b7280;
+      --input-bg: rgba(0, 0, 0, 0.05);
+      --input-text: #1f2937;
+      --border-color: rgba(0, 179, 155, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Animated Background Particles Effect */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      overflow-x: hidden;
+      perspective: 1000px;
+      transition: var(--transition);
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://i.ibb.co/S4J80qK5/RD32363337383030373831373740732e77686174736170702e6e6574-819801.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: blur(8px) brightness(0.4);
+      z-index: -2;
+      transform: scale(1.1);
+    }
+
+    /* Floating Shape Decorations */
+    .bg-shape {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(60px);
+      z-index: -1;
+      opacity: 0.4;
+      animation: float-shapes 20s infinite alternate;
+    }
+    .shape-1 { width: 300px; height: 300px; background: var(--primary); top: -10%; left: -5%; }
+    .shape-2 { width: 400px; height: 400px; background: #7000ff; bottom: -10%; right: -5%; animation-delay: -5s; }
+
+    @keyframes float-shapes {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      100% { transform: translate(50px, 100px) rotate(45deg); }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      padding: 2rem;
+      z-index: 10;
+    }
+
+    /* 3D Logo Section */
+    .logo-container {
+      position: relative;
+      margin-bottom: 2.5rem;
+      transform-style: preserve-3d;
+      animation: logo-entrance 1.2s ease-out forwards;
+    }
+
+    .logo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--primary);
+      box-shadow: 0 0 40px rgba(0, 245, 212, 0.5);
+      transform: translateZ(50px);
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      transform: translateZ(80px) rotateY(20deg);
+    }
+
+    /* Card 3D Glassmorphism */
+    .card {
+      padding: 2.5rem;
+      background: var(--card-bg);
+      border-radius: 30px;
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      transition: var(--transition);
+      transform-style: preserve-3d;
+    }
+
+    .card:hover {
+      transform: translateY(-5px) rotateX(2deg);
+      border-color: var(--border-color);
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      background: linear-gradient(to right, #fff, var(--primary), #fff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shine-text 3s linear infinite;
+      font-weight: 800;
+    }
+
+    @keyframes shine-text {
+      to { background-position: 200% center; }
+    }
+
+    /* Enhanced Inputs */
+    .input-group {
+      position: relative;
+      margin: 1.5rem 0;
+      transform: translateZ(20px);
+    }
+
+    .country-select, .input-field {
+      width: 100%;
+      padding: 1.1rem 1.4rem;
+      background: var(--input-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      color: #fff;
+      font-size: 1rem;
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+    }
+
+    .country-select:focus, .input-field:focus {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--primary);
+      box-shadow: 0 0 20px rgba(0, 245, 212, 0.2);
+      outline: none;
+    }
+
+    /* 3D Animated Button */
+    .submit-btn {
+      width: 100%;
+      padding: 1.2rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #000;
+      border: none;
+      border-radius: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 10px 20px rgba(0, 245, 212, 0.3);
+      position: relative;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0, 245, 212, 0.4);
+    }
+
+    .submit-btn:active { transform: translateY(0); }
+
+    /* Result Animation */
+    .result-container.show {
+      animation: slide-up 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      background: rgba(0, 245, 212, 0.05);
+      border: 1px dashed var(--primary);
+    }
+
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(30px) scale(0.9); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .code-display {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-shadow: 0 0 15px rgba(0, 245, 212, 0.6);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Theme Toggle Upgrade */
+    .theme-toggle {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      width: 55px;
+      height: 55px;
+      background: var(--card-bg);
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(180deg) scale(1.1);
+      background: var(--primary);
+    }
+
+    .theme-toggle:hover i { color: #000; }
+
+    /* Keyframes */
+    @keyframes logo-entrance {
+      from { opacity: 0; transform: scale(0.5) rotateY(-90deg); }
+      to { opacity: 1; transform: scale(1) rotateY(0deg); }
+    }
+
+    /* Mobile Tweaks */
+    @media (max-width: 480px) {
+      .card { padding: 1.5rem; }
+      h1 { font-size: 1.4rem; }
+      .code-display { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+
+  <div class="container">
+    <div class="logo-container">
+      <img src="https://i.ibb.co/TBsDynFc/RD32363337383030373831373740732e77686174736170702e6e6574-375537.jpg" alt="MATRIX DEV" class="logo">
+      <div class="logo-glow"></div>
+    </div>
+    
+    <div class="card">
+      <h1>╔═════ஜ۩۞۩ஜ═════╗<br>༒❀𝔾𝔸𝔾𝔸09-𝕄𝔻-𝕍1❀༒<br>╚═════ஜ۩۞۩ஜ═════╝</h1>
+      <p class="subtitle">Generate pair code to connect WhatsApp bot</p>
+      
+      <div id="connection-status" style="padding: 15px; border-radius: 12px; margin-bottom: 20px; display: none; text-align: center;">
+        <p id="status-text" style="margin: 0; font-weight: bold;"></p>
+      </div>
+
+      <div class="input-group">
+        <select id="country-code" class="country-select">
+          <option value="">Select Country</option>
+          <option value="91">India (+91)</option>
+          <option value="234">Nigeria (+234)</option>
+          <option value="1">USA/Canada (+1)</option>
+          <option value="44">UK (+44)</option>
+          <option value="92">Pakistan (+92)</option>
+          <option value="263">Zimbabwe (+263)</option>
+          </select>
+        <i class="fas fa-chevron-down select-arrow"></i>
+      </div>
+      
+      <div class="input-group">
+        <input id="phone-number" type="text" class="input-field" placeholder="Phone number (without country code)">
+      </div>
+      
+      <button id="submit" class="submit-btn">
+        <span id="btn-text">🔗 Generate Pair Code</span>
+        <span id="loading-spinner" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+      </button>
+      
+      <div id="pair" class="result-container"></div>
+      
+      <div class="action-buttons" id="action-buttons" style="display: none; gap: 10px; margin-top: 20px;">
+        <button id="copy-code" class="action-btn copy-btn" style="flex:1; padding: 12px; border-radius: 12px; background: var(--primary); border: none; font-weight: bold; cursor: pointer; color: #000;">
+          <i class="far fa-copy"></i> Copy Code
+        </button>
+        <button id="connect-btn" class="action-btn connect-btn" style="flex:1; padding: 12px; border-radius: 12px; background: #6ee7b7; color: #000; border: none; font-weight: bold; cursor: pointer;">
+          <i class="fas fa-link"></i> Connect
+        </button>
+      </div>
+
+      <div id="connection-log" style="display: none; margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 12px; max-height: 200px; overflow-y: auto;">
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">Connection Log:</p>
+        <div id="log-content" style="color: var(--text-muted); font-size: 0.85rem; margin-top: 10px; font-family: monospace;"></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="theme-toggle" id="theme-toggle">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+  <script>
+    const API_URL = 'http://localhost:3000'
+    
+    // DOM Elements
+    const submitButton = document.getElementById('submit')
+    const phoneNumberInput = document.getElementById('phone-number')
+    const countryCodeSelect = document.getElementById('country-code')
+    const pairDiv = document.getElementById('pair')
+    const copyCodeButton = document.getElementById('copy-code')
+    const connectButton = document.getElementById('connect-btn')
+    const actionButtons = document.getElementById('action-buttons')
+    const btnText = document.getElementById('btn-text')
+    const connectionStatus = document.getElementById('connection-status')
+    const statusText = document.getElementById('status-text')
+    const connectionLog = document.getElementById('connection-log')
+    const logContent = document.getElementById('log-content')
+
+    // Theme Logic
+    const themeToggle = document.getElementById('theme-toggle')
+    const body = document.body
+    themeToggle.addEventListener('click', () => {
+      const mode = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
+      body.setAttribute('data-theme', mode)
+      themeToggle.innerHTML = mode === 'light' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'
+    })
+
+    // 3D Tilt Effect on Mouse Move
+    const card = document.querySelector('.card')
+    document.addEventListener('mousemove', (e) => {
+        let xAxis = (window.innerWidth / 2 - e.pageX) / 25
+        let yAxis = (window.innerHeight / 2 - e.pageY) / 25
+        card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`
+    })
+
+    // Reset rotation when mouse leaves
+    document.addEventListener('mouseleave', () => {
+        card.style.transform = `rotateY(0deg) rotateX(0deg)`
+    })
+
+    // Logging Function
+    function addLog(message) {
+      const timestamp = new Date().toLocaleTimeString()
+      const logEntry = `[${timestamp}] ${message}`
+      logContent.innerHTML += logEntry + '<br>'
+      logContent.parentElement.scrollTop = logContent.parentElement.scrollHeight
+    }
+
+    // Generate Pair Code
+    submitButton.addEventListener('click', async (e) => {
+      e.preventDefault()
+      const countryCode = countryCodeSelect.value
+      const phoneNumber = phoneNumberInput.value.replace(/[^0-9]/g, '')
+
+      if (!countryCode || !phoneNumber) {
+        alert('Please fill all fields')
+        return
+      }
+
+      submitButton.disabled = true
+      btnText.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...'
+      addLog('🔄 Generating pair code...')
+      
+      try {
+        const fullNumber = countryCode + phoneNumber
+        const response = await axios.get(`${API_URL}/api/pair/code?number=${encodeURIComponent(fullNumber)}`)
+        
+        if (response.data && response.data.code) {
+          pairDiv.innerHTML = `<div class="code-display">${response.data.code}</div><p style="color:var(--primary); text-align: center; margin-top: 10px;">✅ Pair Code Generated!</p>`
+          pairDiv.className = 'result-container show'
+          actionButtons.style.display = 'flex'
+          copyCodeButton.dataset.code = response.data.code
+          copyCodeButton.dataset.number = fullNumber
+          connectButton.dataset.number = fullNumber
+          connectButton.dataset.code = response.data.code
+          connectionLog.style.display = 'block'
+          addLog('✅ Pair code generated successfully')
+          addLog('📱 Enter this code on your WhatsApp to pair')
+        }
+      } catch (error) {
+        pairDiv.innerHTML = `<p style="color: var(--error); text-align: center;"><i class="fas fa-exclamation-circle"></i> Error generating code</p>`
+        pairDiv.className = 'result-container show'
+        addLog(`❌ Error: ${error.response?.data?.message || error.message}`)
+      } finally {
+        submitButton.disabled = false
+        btnText.textContent = '🔗 Generate Pair Code'
+      }
+    })
+
+    // Copy Code
+    copyCodeButton.addEventListener('click', () => {
+      navigator.clipboard.writeText(copyCodeButton.dataset.code)
+      copyCodeButton.innerText = '✅ Copied!'
+      addLog('📋 Pair code copied to clipboard')
+      setTimeout(() => copyCodeButton.innerHTML = '<i class="far fa-copy"></i> Copy Code', 2000)
+    })
+
+    // Connect Bot
+    connectButton.addEventListener('click', async () => {
+      const number = connectButton.dataset.number
+      const code = connectButton.dataset.code
+      
+      connectButton.disabled = true
+      connectButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting...'
+      addLog('🔌 Connecting bot to WhatsApp...')
+      
+      try {
+        const response = await axios.post(`${API_URL}/api/pair/connect`, {
+          number: number,
+          code: code
+        })
+        
+        if (response.data.success) {
+          connectionStatus.style.display = 'block'
+          statusText.innerHTML = '✅ Bot Connected Successfully! Starting bot...'
+          statusText.style.color = 'var(--success)'
+          connectionStatus.style.background = 'rgba(110, 231, 183, 0.1)'
+          connectionStatus.style.borderLeft = '4px solid var(--success)'
+          addLog('✅ Bot connected to WhatsApp!')
+          addLog('🚀 Bot is now running and responding to messages')
+          addLog('📲 Send messages to test the bot')
+        }
+      } catch (error) {
+        statusText.innerHTML = '❌ Connection Failed'
+        statusText.style.color = 'var(--error)'
+        connectionStatus.style.background = 'rgba(252, 165, 165, 0.1)'
+        connectionStatus.style.borderLeft = '4px solid var(--error)'
+        connectionStatus.style.display = 'block'
+        addLog(`❌ Connection error: ${error.response?.data?.message || error.message}`)
+      } finally {
+        connectButton.disabled = false
+        connectButton.innerHTML = '<i class="fas fa-link"></i> Connect'
+      }
+    })
+  </script>
+</body>
+</html>
