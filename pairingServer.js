@@ -6,6 +6,8 @@ import { fileURLToPath } from 'url'
 import pino from 'pino'
 import dotenv from 'dotenv'
 import makeWASocket, { DisconnectReason, useMultiFileAuthState, Browsers } from '@whiskeysockets/baileys'
+import { BotCommands } from './modules/commands.js'
+import { MessageHandler } from './modules/messageHandler.js'
 
 dotenv.config()
 
@@ -55,7 +57,7 @@ app.get('/api/pair/code', async (req, res) => {
       fs.mkdirSync(sessionDir, { recursive: true })
     }
 
-    const { state } = await useMultiFileAuthState(sessionDir)
+    const { state, saveCreds } = await useMultiFileAuthState(sessionDir)
 
     const sock = makeWASocket({
       auth: state,
@@ -93,11 +95,12 @@ app.get('/api/pair/code', async (req, res) => {
       return res.status(500).json({ message: 'Failed to generate pairing code' })
     }
 
-    // Store pairing info
+    // Store pairing info with saveCreds
     pairingCodes.set(number, {
       code: code,
       socket: sock,
       sessionDir: sessionDir,
+      saveCreds: saveCreds,
       createdAt: Date.now()
     })
 
@@ -148,6 +151,27 @@ app.post('/api/pair/connect', async (req, res) => {
           logger.info(`✅ Bot connected as ${userData.id}`)
 
           try {
+            // Initialize bot handlers
+            const commandHandler = new BotCommands(CREATOR_INFO, BOT_FOOTER)
+            const messageHandler = new MessageHandler(sock, commandHandler, BOT_FOOTER, CREATOR_INFO)
+
+            // Set up message handler for this bot
+            sock.ev.on('messages.upsert', async ({ messages, type }) => {
+              if (type === 'notify') {
+                for (const msg of messages) {
+                  try {
+                    await messageHandler.handle(msg)
+                  } catch (error) {
+                    logger.error('Error handling message:', error)
+                  }
+                }
+              }
+            })
+
+            // Set up credentials update handler
+            const { saveCreds } = pairingInfo
+            sock.ev.on('creds.update', saveCreds)
+
             // Send welcome message to the connected number
             const welcomeMessage = `╔══════════════════════════════════╗
 🤖 GAGA AI NEXUS - Bot Connected!
@@ -179,19 +203,23 @@ app.post('/api/pair/connect', async (req, res) => {
             logger.warn('Could not send welcome message:', msgError.message)
           }
 
-          // Store active session
+          // Store active session with message handler running
           activeSessions.set(number, {
             socket: sock,
             sessionDir: sessionDir,
             connectedAt: Date.now(),
-            userData: userData
+            userData: userData,
+            isRunning: true
           })
+
+          logger.info(`🚀 Bot is now ACTIVE for: ${number}`)
 
           resolve(res.json({
             success: true,
-            message: 'Bot connected successfully!',
+            message: 'Bot connected and running successfully!',
             userData: userData,
-            welcomeSent: true
+            welcomeSent: true,
+            botStatus: 'ACTIVE'
           }))
         }
 

@@ -431,8 +431,9 @@
       const code = connectButton.dataset.code
       
       connectButton.disabled = true
-      connectButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting...'
+      connectButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connecting & Starting Bot...'
       addLog('🔌 Connecting bot to WhatsApp...')
+      addLog('⚙️ Initializing bot handlers...')
       
       try {
         const response = await axios.post(`${API_URL}/api/pair/connect`, {
@@ -442,13 +443,15 @@
         
         if (response.data.success) {
           connectionStatus.style.display = 'block'
-          statusText.innerHTML = '✅ Bot Connected Successfully! Starting bot...'
+          statusText.innerHTML = '✅ Bot Connected & Running! 🚀'
           statusText.style.color = 'var(--success)'
           connectionStatus.style.background = 'rgba(110, 231, 183, 0.1)'
           connectionStatus.style.borderLeft = '4px solid var(--success)'
           addLog('✅ Bot connected to WhatsApp!')
-          addLog('🚀 Bot is now running and responding to messages')
+          addLog('🎯 All handlers initialized')
+          addLog('🚀 Bot is now ACTIVE and responding to messages')
           addLog('📲 Send messages to test the bot')
+          addLog('✨ Bot will restart automatically on disconnect')
         }
       } catch (error) {
         statusText.innerHTML = '❌ Connection Failed'
