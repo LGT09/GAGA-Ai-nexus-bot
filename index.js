@@ -35,19 +35,48 @@ const BOT_FOOTER = `
 ©️ Copyright 2026
 ╚══════════════════════════════════╝`
 
+// Check if credentials exist in any of the auth directories
+function findCredentials() {
+  const baseDir = __dirname
+  const dirs = fs.readdirSync(baseDir).filter(file => {
+    return fs.statSync(path.join(baseDir, file)).isDirectory() && file.startsWith('auth_')
+  })
+  
+  if (dirs.length > 0) {
+    return path.join(baseDir, dirs[0])
+  }
+  
+  // Check for legacy auth_info directory
+  const legacyDir = path.join(baseDir, 'auth_info')
+  if (fs.existsSync(legacyDir) && fs.readdirSync(legacyDir).length > 0) {
+    return legacyDir
+  }
+  
+  return null
+}
+
 async function startBot() {
   try {
     logger.info('🚀 Starting WhatsApp Bot...')
     logger.info(`👤 Created by: ${CREATOR_INFO.name}`)
     logger.info(`📅 ${CREATOR_INFO.copyright}`)
     
-    // Create auth directory if it doesn't exist
-    const authDir = path.join(__dirname, 'auth_info')
-    if (!fs.existsSync(authDir)) {
-      fs.mkdirSync(authDir, { recursive: true })
+    // Check for existing paired credentials
+    const credDir = findCredentials()
+    
+    if (!credDir) {
+      logger.warn('⚠️  No paired credentials found!')
+      logger.info('📱 To pair your bot:')
+      logger.info('1. Run: npm run pair')
+      logger.info('2. Open: http://localhost:3000')
+      logger.info('3. Enter your WhatsApp number')
+      logger.info('4. Enter the pairing code on WhatsApp')
+      logger.info('5. Bot will start automatically!')
+      return
     }
-
-    const { state, saveCreds } = await useMultiFileAuthState(authDir)
+    
+    logger.info(`✅ Found credentials at: ${credDir}`)
+    const { state, saveCreds } = await useMultiFileAuthState(credDir)
 
     const sock = makeWASocket({
       auth: state,
