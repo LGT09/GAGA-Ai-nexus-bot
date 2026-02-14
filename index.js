@@ -12,6 +12,9 @@ import { BotCommands } from './modules/commands.js'
 import { MessageHandler } from './modules/messageHandler.js'
 import { Logger } from './modules/logger.js'
 import dotenv from 'dotenv'
+import express from 'express'
+import bodyParser from 'body-parser'
+import createPairingRouter from './pairingServer.js'
 
 dotenv.config()
 
@@ -34,6 +37,28 @@ const BOT_FOOTER = `
 🤖 GAGA AI NEXUS by TRAXXION GAGA
 ©️ Copyright 2026
 ╚══════════════════════════════════╝`
+
+// --- HTTP pairing server (serves pairing UI & pairing APIs) ---
+const app = express()
+const HTTP_PORT = process.env.HTTP_PORT || process.env.PORT || 8000
+
+app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.static(__dirname))
+
+app.use('/pair', createPairingRouter())
+
+app.get('/pair', (req, res) => {
+  res.sendFile(path.join(__dirname, 'pair.html'))
+})
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'main.html'))
+})
+
+app.listen(HTTP_PORT, () => {
+  logger.info(`HTTP server running on http://localhost:${HTTP_PORT}`)
+})
 
 // Check if credentials exist in any of the auth directories
 function findCredentials() {
