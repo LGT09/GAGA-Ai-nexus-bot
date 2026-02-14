@@ -1,5 +1,3 @@
-import chalk from 'chalk'
-
 export class Logger {
   info(message) {
     console.log(`[${new Date().toLocaleTimeString()}] ℹ️  ${message}`)
